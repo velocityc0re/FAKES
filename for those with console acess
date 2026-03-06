@@ -1,0 +1,64 @@
+(function() {
+    const config = {
+        title: "Edmentum Courseware",
+        fav: "https://learner.ui.apps.elf.edmentum.com/2026.2.27.2-rel/secondary/favicon.ico",
+        logo: "https://auth.edmentum.com/favicon.ico"
+    };
+
+    const html = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Loading Dashboard...</title>
+        <link id="f" rel="icon" href="https://3kh0.github.io/img/logo.png">
+        <style>
+            body, html { margin:0; padding:0; height:100%; width:100%; overflow:hidden; background:#000; color:#0ff; font-family:monospace; }
+            #l { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; }
+            #a { display:none; width:100%; height:100%; background:#f4f7f9; position:fixed; inset:0; font-family:sans-serif; }
+            .s { width:64px; height:100%; background:#003057; position:absolute; left:0; display:flex; flex-direction:column; align-items:center; padding-top:15px; z-index:100; }
+            .n { width:42px; height:42px; margin-bottom:15px; border-radius:8px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:rgba(255,255,255,0.6); }
+            .n.active { background:#0070c0; color:#fff; }
+            .h { height:56px; background:#fff; width:calc(100% - 64px); position:absolute; left:64px; border-bottom:1px solid #dee2e6; display:flex; align-items:center; padding:0 24px; box-sizing:border-box; }
+            .c { position:absolute; left:64px; top:56px; width:calc(100% - 64px); height:calc(100% - 56px); padding:30px; box-sizing:border-box; color:#333; }
+            .card { background:white; border-radius:8px; border:1px solid #ddd; padding:20px; width:340px; margin-top:20px; border-top:4px solid #0070c0; }
+            .pg { background:#e9ecef; border-radius:10px; height:8px; width:100%; margin:15px 0; overflow:hidden; }
+            .pf { background:#28a745; height:100%; width:0; transition:width 3s ease-in-out; }
+        </style>
+    </head>
+    <body>
+        <div id="l"><h1>V16_BYPASS_ACTIVE</h1><p>PRESS [ESC] TO GHOST</p></div>
+        <div id="a">
+            <div class="s">
+                <div class="n active" onclick="tab('Home')">H</div>
+                <div class="n" onclick="tab('Lessons')">L</div>
+            </div>
+            <div class="h"><div style="font-weight:600; color:#003057;"><img src="${config.logo}" width="18"> Courseware</div></div>
+            <div class="c" id="vb">
+                <h3>Home</h3>
+                <div class="card">
+                    <div style="font-weight:600;">Algebra 2: Semester B</div>
+                    <div class="pg"><div id="bar" class="pf"></div></div>
+                    <div style="display:flex; justify-content:space-between; font-size:11px; color:#999;"><span>Grade: 88.4%</span><span id="pct">0%</span></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function tab(n){ document.getElementById('vb').innerHTML = "<h3>"+n+"</h3><p>Loading "+n+"...</p>"; }
+            document.addEventListener("keydown", e => {
+                if (e.key === "Escape") {
+                    document.title = "${config.title}";
+                    document.getElementById("f").href = "${config.fav}";
+                    document.getElementById("l").remove();
+                    document.getElementById("a").style.display = "block";
+                    document.body.style.background = "#f4f7f9";
+                    setTimeout(() => { document.getElementById("bar").style.width = "74%"; document.getElementById("pct").innerText = "74%"; }, 500);
+                }
+            });
+        <\/script>
+    </body>
+    </html>`;
+
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    window.open(url, '_blank');
+})();
